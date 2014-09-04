@@ -1,0 +1,25 @@
+.navbar.navbar-default(role='navigation')
+  .container-fluid
+    .navbar-header
+      button.navbar-toggle(data-toggle='collapse', data-target='#bs-navbar-collapse')
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      a.navbar-brand(href='/') Amazon Global
+
+    .collapse.navbar-collapse#bs-navbar-collapse
+      ul.nav.navbar-nav.navbar-right
+        if user
+          li: a(href='/profile'): i.fa.fa-book.fa-lg &nbsp; Profile
+          li
+            form.navbar-form(method='post', action='/logout')
+              .form-group
+                input(type='hidden', name='_method', value='delete')
+                button.btn.btn-danger= user.email || user.username || user.login
+        else
+          li: a(href='/register'): i.fa.fa-user.fa-lg &nbsp; Register
+          li: a(href='/login'): i.fa.fa-bolt.fa-lg &nbsp; Login
+          li: a(href='/auth/twitter'): i.fa.fa-twitter.fa-lg &nbsp; Twitter
+          li: a(href='/auth/github'): i.fa.fa-github.fa-lg &nbsp; Github
+
